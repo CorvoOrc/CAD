@@ -1,28 +1,28 @@
 # -*- coding: cp1251 -*- 
 import pyttsx
 
-# Выбор голоса
+# Г‚Г»ГЎГ®Г° ГЈГ®Г«Г®Г±Г 
 Alena = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\TokenEnums\Infovox Desktop v2.2\Alyona22k"
 
-engine = pyttsx.init() # создаем двигатель с стандартным драйвером (текстировал на 'sapi5')
+engine = pyttsx.init()
 
-# Настройка голоса
-rate = engine.getProperty('rate') # получаем скорость воспроизведения
-engine.setProperty('rate', rate - 20) # слишком быстро, уменьшаем
-engine.setProperty('voice', Alena) # используем голос Алены
+
+rate = engine.getProperty('rate')
+engine.setProperty('rate', rate - 20)
+engine.setProperty('voice', Alena)
 
 stop = False 
-while stop == False: # защита от случайного нажатия
-    choose = (raw_input("Ввод из файла(F)/консоли(C): ")).decode('cp1251')
-    if choose == 'F': # если выбрано считывание с файла
-        text = open('input.txt', 'r+').readlines() # считываем построчно в файл
-        for line in text: # построчно воспроизводим
+while stop == False:
+    choose = (raw_input("Г‚ГўГ®Г¤ ГЁГ§ ГґГ Г©Г«Г (F)/ГЄГ®Г­Г±Г®Г«ГЁ(C): ")).decode('cp1251')
+    if choose == 'F':
+        text = open('input.txt', 'r+').readlines()
+        for line in text:
             engine.say(line.decode('cp1251'))
         engine.runAndWait()
         stop = True
-    elif choose == 'C': # если выбрано считывание с консоли
-        text = (raw_input("Входные данные:  ")).decode('cp1251')
-        engine.say(text) # воспроизводим полученный с консоли текст
+    elif choose == 'C':
+        text = (raw_input("Г‚ГµГ®Г¤Г­Г»ГҐ Г¤Г Г­Г­Г»ГҐ:  ")).decode('cp1251')
+        engine.say(text)
         engine.runAndWait()
         stop = True
         
